@@ -9,49 +9,43 @@ class ApiService {
       'Content-Type': 'application/json',
     };
 
-     final payload = {
+    final payload = {
       'phone_number': phoneNumber,
       'full_name': fullName,
     };
 
     final response = await http.post(
       Uri.parse('$baseUrl/auth/register/'),
-    headers: headers,
-     body: json.encode(payload),
+      headers: headers,
+      body: json.encode(payload),
     );
 
     if (response.statusCode == 201) {
-      
-      
       return true;
     } else {
-     
       return false;
     }
   }
 
   Future<bool> verifyOTP(String phoneNumber, String verificationCode) async {
-    // final headers = {
-    //   'Content-Type': 'application/json',
-    // };
+    final headers = {
+      'Content-Type': 'application/json',
+    };
 
-     final payload = {
+    final payload = {
       'phone_number': phoneNumber,
-      'verificationCode': verificationCode,
+      'verification_code': verificationCode,
     };
 
     final response = await http.post(
       Uri.parse('$baseUrl/auth/verify-otp/'),
-    // headers: headers,
-     body: json.encode(payload),
+      headers: headers,
+      body: json.encode(payload),
     );
 
     if (response.statusCode == 200) {
-      
-      
       return true;
     } else {
-     
       return false;
     }
   }
